@@ -6,6 +6,7 @@ struct ContentView: View {
         Rectangle()
             .frame(width: 300, height: 300)
             .foregroundStyle(Color.gray)
+            .background(Color.yellow)
     }
 }
 
