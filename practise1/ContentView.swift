@@ -31,8 +31,8 @@ struct ContentView: View {
                 Triangle()
                     .fill(.red)
                     .frame(width: w * 0.13, height: h * 0.19)
-                    .rotationEffect(.degrees(-12))
-                    .position(x: w * 0.27, y: h * 0.28)
+                    .rotationEffect(.degrees(-20))
+                    .position(x: w * 0.27, y: h * 0.25)
 
                 Triangle()
                     .fill(.red)
@@ -43,12 +43,13 @@ struct ContentView: View {
                     .fill(.red)
                     .frame(width: w * 0.15, height: h * 0.28)
                     .rotationEffect(.degrees(12))
-                    .position(x: w * 0.56, y: h * 0.24)
+                    .position(x: w * 0.60, y: h * 0.20)
 
                 Triangle()
                     .fill(.red)
                     .frame(width: w * 0.11, height: h * 0.18)
-                    .position(x: w * 0.66, y: h * 0.28)
+                    .rotationEffect(.degrees(24))
+                    .position(x: w * 0.72, y: h * 0.30)
 
                 // MARK: - 小紅眼
                 Circle()
@@ -73,7 +74,7 @@ struct ContentView: View {
                         EyeShape()
                             .stroke(.black, lineWidth: 4)
                     }
-                    .frame(width: w * 0.095, height: h * 0.18)
+                    .frame(width: w * 0.075, height: h * 0.16)
                     .position(x: w * 0.44, y: h * 0.56)
 
                 // MARK: - 嘴巴
@@ -87,7 +88,7 @@ struct ContentView: View {
                         )
                     )
                     .frame(width: w * 0.065, height: h * 0.035)
-                    .position(x: w * 0.33, y: h * 0.67)
+                    .position(x: w * 0.35, y: h * 0.67)
 
                 // MARK: - 吊飾
                 RoundedRectangle(cornerRadius: 3)
@@ -180,29 +181,18 @@ struct EyeShape: Shape {
             ),
             
         )
-        path.addCurve(
-            to: CGPoint(
-                x: rect.minX,
-                y: rect.maxY
-            ),
-            
-            control1:
-            CGPoint(
-                x:rect.maxX,
-                y:rect.height
-            ),
-            control2:
-            CGPoint(
-                    x:rect.minX,
-                    y:rect.height
-                )
-            
+        path.addArc(
+            center: CGPoint(x: rect.midX, y: rect.maxY),
+            radius: rect.width/2,
+            startAngle: .degrees(0),    // 0度為正右方（3點鐘方向）
+            endAngle: .degrees(180),    // 順時針或逆時針旋轉至 180 度
+            clockwise: false            // false 為順時針，true 為逆時針
         )
 
         path.addLine(
             to: CGPoint(
-                x: rect.midX,
-                y: rect.maxY
+                x: rect.minX,
+                y: rect.minY
             ),
             
         )
