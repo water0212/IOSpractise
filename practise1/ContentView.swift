@@ -2,11 +2,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        
         GeometryReader { geo in
             let w = geo.size.width
             let h = geo.size.height
-
+            
             ZStack {
+                
                 // 背上的紅色尖角
                 Triangle()
                     .fill(.red)
@@ -217,9 +219,9 @@ struct LeftEyeShape: Shape {
         path.addArc(
             center: CGPoint(x: rect.midX, y: rect.maxY),
             radius: rect.width/2,
-            startAngle: .degrees(0),    // 0度為正右方（3點鐘方向）
-            endAngle: .degrees(180),    // 順時針或逆時針旋轉至 180 度
-            clockwise: false            // false 為順時針，true 為逆時針
+            startAngle: .degrees(0),
+            endAngle: .degrees(180),
+            clockwise: false
         )
 
         path.addLine(
@@ -267,9 +269,9 @@ struct RightEyeShape: Shape {
         path.addArc(
             center: CGPoint(x: rect.midX, y: rect.maxY),
             radius: rect.width/2,
-            startAngle: .degrees(0),    // 0度為正右方（3點鐘方向）
-            endAngle: .degrees(180),    // 順時針或逆時針旋轉至 180 度
-            clockwise: false            // false 為順時針，true 為逆時針
+            startAngle: .degrees(0),
+            endAngle: .degrees(180),    
+            clockwise: false
         )
 
         path.addLine(
@@ -409,8 +411,7 @@ struct TailFireShape: Shape {
 
 #Preview {
     ZStack {
-        Color.white
-
+        Color(red:255/255,green:150/255,blue: 170/255).ignoresSafeArea()
         ContentView()
             .frame(width: 350, height: 260)
     }
