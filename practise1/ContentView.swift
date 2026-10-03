@@ -3,60 +3,81 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         GeometryReader { geo in
-            let w = geo.size.width*0.9
+            let w = geo.size.width
             let h = geo.size.height
 
             ZStack {
-                // MARK: - 背上的紅色尖角
+                // 背上的紅色尖角
                 Triangle()
                     .fill(.red)
-                    .frame(width: w * 0.13, height: h * 0.19)
+                    .frame(width: w * 0.17, height: h * 0.26)
                     .rotationEffect(.degrees(12))
-                    .position(x: w * 0.60, y: h * 0.25)
+                    .position(x: w * 0.58, y: h * 0.10)
                 Triangle()
                     .fill(.red)
-                    .frame(width: w * 0.13, height: h * 0.19)
+                    .frame(width: w * 0.17, height: h * 0.26)
                     .rotationEffect(.degrees(12))
-                    .position(x: w * 0.50, y: h * 0.25)
+                    .position(x: w * 0.47, y: h * 0.10)
 
                 Triangle()
                     .fill(.red)
-                    .frame(width: w * 0.13, height: h * 0.19)
-                    .rotationEffect(.degrees(12))
-                    .position(x: w * 0.55, y: h * 0.25)
+                    .frame(width: w * 0.25, height: h * 0.26)
+                    .rotationEffect(.degrees(35))
+                    .position(x: w * 0.68, y: h * 0.25)
 
 
                 Triangle()
                     .fill(.red)
-                    .frame(width: w * 0.11, height: h * 0.18)
-                    .rotationEffect(.degrees(24))
-                    .position(x: w * 0.72, y: h * 0.30)
+                    .frame(width: w * 0.23, height: h * 0.26)
+                    .rotationEffect(.degrees(90))
+                    .position(x: w * 0.74, y: h * 0.35)
 
-                // MARK: - 身體
+                
+                Triangle()
+                    .fill(.orange)
+                    .frame(width: w * 0.13, height: h * 0.32)
+                    .rotationEffect(.degrees(25))
+                    .position(x: w * 0.36, y: h * 0.2)
+                // 身體
                 Ellipse()
                     .fill(.white)
                     .stroke(.black.opacity(1), lineWidth: 2)
-                    .frame(width: w * 0.70, height: h * 0.65)
-                    .position(x: w * 0.47, y: h * 0.55)
-                // MARK: - 尾巴
+                    .frame(width: w * 0.6, height: h * 0.72)
+                    .position(x: w * 0.47, y: h * 0.54)
+                // 尾巴
                 TailShape().fill(.white).overlay {
                     TailShape()
-                        .stroke(.black, lineWidth: 3)
+                        .stroke(.black, lineWidth: 2)
                 }
-                .frame(width: w * 0.35, height: h * 0.45)
-                .position(x: w * 0.90, y: h * 0.55)
-                
-                // MARK: - 頭上的紅色尖角
-                Triangle()
+                .frame(width: w * 0.25, height: h * 0.49)
+                .position(x: w * 0.82, y: h * 0.53)
+                // 尾巴火
+                TailFireShape()
                     .fill(.red)
-                    .frame(width: w * 0.10, height: h * 0.15)
-                    .rotationEffect(.degrees(-20))
-                    .position(x: w * 0.25, y: h * 0.27)
+                    .overlay {
+                        TailFireShape()
+                            .stroke(.black, lineWidth: 3)
+                           
+                    }
+                    .frame(width: w*0.35,height: h*0.35)
+                    .position(x: w * 0.92,y: h * 0.45)
+                TailFireShape()
+                    .fill(.red)
+                    .overlay {
+                        TailFireShape()
+                            .stroke(.black, lineWidth: 3)
+                           
+                    }
+                    .frame(width: w*0.20,height: h*0.20)
+                    .position(x: w * 0.92,y: h * 0.5)
+                // MARK: - 頭上的橘色尖角
+                Triangle()
+                    .fill(.orange)
+                    .frame(width: w * 0.11, height: h * 0.26)
+                    .rotationEffect(.degrees(35))
+                    .position(x: w * 0.6, y: h * 0.2)
 
-                Triangle()
-                    .fill(.red)
-                    .frame(width: w * 0.16, height: h * 0.25)
-                    .position(x: w * 0.34, y: h * 0.2)
+                
 
 
                 // MARK: - 小紅眼
@@ -75,7 +96,7 @@ struct ContentView: View {
                         RightEyeShape()
                             .stroke(.black, lineWidth: 4)
                     }
-                    .frame(width: w * 0.075, height: h * 0.16)
+                    .frame(width: w * 0.065, height: h * 0.13)
                     .position(x: w * 0.27, y: h * 0.56)
 
                 // 左眼
@@ -104,21 +125,21 @@ struct ContentView: View {
                 // MARK: - 吊飾
                 RoundedRectangle(cornerRadius: 3)
                     .fill(.red)
-                    .frame(width: w * 0.065, height: h * 0.22)
-                    .position(x: w * 0.65, y: h * 0.65)
+                    .frame(width: w * 0.075, height: h * 0.16)
+                    .position(x: w * 0.75, y: h * 0.59)
 
                 Rectangle()
                     .fill(.orange)
-                    .frame(width: w * 0.065, height: h * 0.07)
-                    .position(x: w * 0.65, y: h * 0.55)
+                    .frame(width: w * 0.065, height: h * 0.05)
+                    .position(x: w * 0.75, y: h * 0.53)
 
                 // 吊飾的線
                 Path { path in
                     path.move(
-                        to: CGPoint(x: w * 0.65, y: h * 0.45)
+                        to: CGPoint(x: w * 0.75, y: h * 0.45)
                     )
                     path.addLine(
-                        to: CGPoint(x: w * 0.65, y: h * 0.53)
+                        to: CGPoint(x: w * 0.75, y: h * 0.50)
                     )
                 }
                 .stroke(.red, lineWidth: 3)
@@ -129,13 +150,13 @@ struct ContentView: View {
                     .fill(.red)
                     .frame(width: w * 0.075, height: h * 0.075)
                     .rotationEffect(.degrees(8))
-                    .position(x: w * 0.32, y: h * 0.83)
+                    .position(x: w * 0.33, y: h * 0.86)
 
                 Capsule()
                     .fill(.red)
                     .frame(width: w * 0.075, height: h * 0.075)
                     .rotationEffect(.degrees(-8))
-                    .position(x: w * 0.62, y: h * 0.83)
+                    .position(x: w * 0.60, y: h * 0.86)
             }
         }
         .aspectRatio(1.35, contentMode: .fit)
@@ -278,9 +299,32 @@ struct RightEyeShape: Shape {
 struct TailShape: Shape {
     func path(in rect:CGRect) -> Path {
         var path = Path()
-        path.move( to: CGPoint(x: rect.minX,y: rect.minY))
-        path.addQuadCurve(to: CGPoint(x:rect.maxX,y:rect.maxY*0.6), control:CGPoint(x:rect.maxX*0.7,y:rect.maxY*0.85))
-        path.addQuadCurve(to: CGPoint(x:rect.minX,y:rect.maxY), control: CGPoint(x:rect.maxX*0.8,y:rect.maxY*0.9))
+        path.move(
+            to: CGPoint(
+                x: rect.minX,
+                y: rect.minY
+            )
+        )
+        path.addQuadCurve(
+            to: CGPoint(
+                x:rect.maxX,
+                y:rect.maxY*0.6
+            ),
+            control:CGPoint(
+                x:rect.maxX*0.7,
+                y:rect.maxY*0.85
+            )
+        )
+        path.addQuadCurve(
+            to: CGPoint(
+                x:rect.minX,
+                y:rect.maxY
+            ),
+            control:CGPoint(
+                x:rect.maxX*0.8,
+                y:rect.maxY*0.9
+            )
+        )
         return path
     }
 }
@@ -318,6 +362,46 @@ struct MouthShape: Shape {
                 y: rect.maxY
             )
         )
+
+        return path
+    }
+}
+struct TailFireShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+
+        path.move(
+            to: CGPoint(
+                x: rect.midX,
+                y: rect.minY
+            )
+        )
+
+        path.addQuadCurve(
+            to: CGPoint(
+                x: rect.midX,
+                y: rect.maxY
+            ),
+            control: CGPoint(
+                x: rect.maxX,
+                y: rect.maxY*0.7
+            )
+        )
+        path.addQuadCurve(
+            to: CGPoint(
+                x: rect.midX,
+                y: rect.minY
+            ),
+            control: CGPoint(
+                x: rect.minX,
+                y: rect.maxY*0.7
+            )
+        )
+
+
+
+
+        path.closeSubpath()
 
         return path
     }
